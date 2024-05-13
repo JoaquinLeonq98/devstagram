@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Devstagram @yield('titulo')</title>
 
@@ -13,10 +12,25 @@
     <header class="bg-base dark:bg-base p-5 border-b shadow">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-black text-pink dark:text-mauve ">Devstagram</h1>
-            <nav class="flex gap-2 items-center">
+
+            {{-- This navbar is for authenticated users and contains a form with directives to log out more securely from the application --}}
+           @auth
+            <nav class="flex gap-6 items-center">
+                <a class="text-red dark:text-blue font-bold" href="/login">Hola: <span class="font-normal">{{auth()->user()->username}}</span></a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-red dark:text-blue font-bold uppercase" >Log out</button>
+                </form>
+                
+            </nav>
+           @endauth
+
+           @guest
+            <nav class="flex gap-6 items-center">
                 <a class="text-red dark:text-blue font-bold uppercase" href="/login">Login</a>
                 <a class="text-red dark:text-blue font-bold uppercase" href="{{route('register')}}">Sign up</a>
             </nav>
+           @endguest
         </div>
     </header>
     <main class="container mx-auto mt-10">

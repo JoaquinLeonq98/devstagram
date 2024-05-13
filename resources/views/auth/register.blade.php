@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="md:flex md:justify-evenly">
+    <div class="md:flex md:justify-evenly md:gap-10 md:items-center">
         <div class="md:w-5/12 p-5">
             <img src="{{ asset('src/img/cat.png') }}" alt=" Imagen de Registro de usaurios">
         </div>
